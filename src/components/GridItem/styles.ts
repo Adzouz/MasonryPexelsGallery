@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const ItemContainer = styled.li`
@@ -9,11 +10,15 @@ export const ItemContainer = styled.li`
   padding: 8px;
 `;
 
-export const ImageWrapper = styled.div`
+export const ImageLink = styled(Link)`
   overflow: hidden;
   width: 100%;
   height: 100%;
   border-radius: 4px;
   position: relative;
-  z-index: 1;
+  transition: 0.2s transform ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;

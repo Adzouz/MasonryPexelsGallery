@@ -7,7 +7,7 @@ interface ImageProps {
 export const Image = styled.img<ImageProps>`
   display: block;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
   max-width: 100%;
 
   ${({ $isLoaded }) =>
