@@ -1,5 +1,6 @@
 // Types
-import type { PhotoProps, PositionInfo } from "../../types";
+import type { PositionInfo } from "../../types";
+import type { Photo } from "pexels";
 
 // Libraries
 import React from "react";
@@ -8,10 +9,10 @@ import React from "react";
 import LazyImage from "../LazyImage";
 
 // Styles
-import { ItemContainer, ImageWrapper } from "./styles";
+import { ItemContainer, ImageLink } from "./styles";
 
 interface GridItemProps {
-  photo: PhotoProps;
+  photo: Photo;
   positionInfo: PositionInfo;
 }
 
@@ -19,9 +20,9 @@ const GridItem = React.memo(({ photo, positionInfo }: GridItemProps) => {
   const { top, left, width, height } = positionInfo;
   return (
     <ItemContainer style={{ width, height, top, left }}>
-      <ImageWrapper>
-        <LazyImage src={photo.src} alt={photo.alt} />
-      </ImageWrapper>
+      <ImageLink to={`/details/${photo.id}`}>
+        <LazyImage src={photo.src.large} alt={photo.alt || ""} />
+      </ImageLink>
     </ItemContainer>
   );
 });

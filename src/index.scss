@@ -20,22 +20,6 @@
   box-sizing: border-box;
 }
 
-button,
-a {
-  cursor: pointer;
-  transition:
-    0.2s background-color ease-in-out,
-    0.2s border-color ease-in-out,
-    0.2s outline-color ease-in-out;
-
-  &:hover,
-  &:focus-visible {
-    background-color: var(--color-highlight);
-    border-color: var(--color-highlight);
-    outline: none;
-  }
-}
-
 input[type="text"] {
   &:focus-visible {
     border-color: var(--color-highlight);
@@ -49,6 +33,7 @@ body {
   font-family: var(--font-secondary);
   font-weight: 400;
   text-align: center;
+  overflow-x: hidden;
 }
 
 h1,

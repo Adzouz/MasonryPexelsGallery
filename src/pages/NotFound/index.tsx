@@ -1,4 +1,5 @@
-import { ButtonLink } from "./styles";
+// Styles
+import { ButtonLink } from "../styles";
 
 const NotFoundPage = () => {
   return (

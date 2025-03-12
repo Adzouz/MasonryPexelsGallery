@@ -1,54 +1,92 @@
-# React + TypeScript + Vite
+# 🖼️ Masonry Pexels Gallery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Template project to display a list of images from Pexels (with Pexels API).
 
-Currently, two official plugins are available:
+![Preview of the app](public/screenshot.jpg)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Installation
 
-## Expanding the ESLint configuration
+### 1️⃣ Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- [Node.js](https://nodejs.org/) (used with version `22.14.0`)
+- [npm](https://www.npmjs.com/) (used with version `10.9.2`)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+_Volta is configured and version pinned in the package.json_
+
+### 2️⃣ Install dependencies
+
+Clone the repo and install dependencies by running the following command:
+
+```sh
+git clone https://github.com/Adzouz/MasonryPexelsGallery.git photos-gallery
+cd photos-gallery
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ⚙️ Configuration
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+You need to setup a .env and provide your Pexels API key in order to run the project on your side.
+
+```env
+VITE_PEXELS_API_KEY=very-super-secret-key
 ```
+
+_You can choose the number of elements you want to display per request in **src/context/PhotoContext/PhotoContext.tsx (line 7)**._
+
+_You can also customize a few other elements in **src/components/GridList/index.tsx (top of the file)**, like:_
+
+- _The gap between the elements in the grid (in pixels) - gapImages_
+- _The number of columns (based on minimal breakpoints) - nbColumnsByBreakpoint_
+- _The grid max width (in pixels) - containerMaxWidth_
+
+---
+
+## 🏃‍➡️ Run project
+
+To run the project locally (in dev mode) you can run the following command:
+
+```sh
+npm run dev
+```
+
+---
+
+## 📝 Additional scripts
+
+```sh
+npm run lint
+```
+
+---
+
+## 📦 Stack
+
+- ⚛️ **React** (with Vite)
+- 🔗 **React Router DOM**
+- 🎨 **Sass + Styled Components**
+- 📡 **Pexels**
+- 🛠️ **ESLint + Prettier**
+
+_This project is using [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) to check commits messages format._
+
+---
+
+## 🚀 Deployment
+
+To prepare the app for production, run the following command:
+
+```sh
+npm run build
+```
+
+---
+
+## 👨‍💻 Contribute
+
+1. **Fork** the repo
+2. **Create a new fix or feature branch** : `git checkout -b {feat|fix}/update-name`
+3. **Commit** : `git commit -m "{feat|fix}: changes description"`
+4. **Push** : `git push origin {feat|fix}/update-name`
+5. **Open a Pull Request**

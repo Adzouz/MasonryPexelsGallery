@@ -1,8 +1,8 @@
 // Types
-import type { PhotoProps } from "../../types";
+import type { Photo } from "pexels";
 
 // Libraries
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 // Components
 import GridItem from "../GridItem";
@@ -20,14 +20,13 @@ const nbColumnsByBreakpoint: {
   1024: 6,
   1440: 8,
 }; // How many columns to display above each breakpoint defined as a key
+const containerMaxWidth = 1920; // Max size of the grid
 
 interface GridListProps {
-  photos: PhotoProps[];
+  photos: Photo[];
 }
 
 const GridList = React.memo(({ photos }: GridListProps) => {
-  const gridRef = useRef<HTMLUListElement>(null);
-
   const [viewportWidth, setViewportWidth] = useState(
     document.documentElement.clientWidth
   );
@@ -49,9 +48,13 @@ const GridList = React.memo(({ photos }: GridListProps) => {
    * Method used to generate the columns to have the Masonry effect without using any library
    */
   const columns = useMemo(() => {
-    if (!photos || !gridRef?.current) return [];
+    if (!photos) return [];
 
-    const gridWidth = gridRef.current.getBoundingClientRect().width; // Width of the container
+    const bodyElement = document.getElementsByTagName("body")[0];
+    const bodyStyle = window.getComputedStyle(bodyElement);
+    const containerWidth =
+      viewportWidth -
+      (parseFloat(bodyStyle.paddingLeft) + parseFloat(bodyStyle.paddingRight));
 
     // We fetch the number of columns depending on the current viewport width
     const breakpointsList = Object.keys(nbColumnsByBreakpoint).map(
@@ -67,7 +70,9 @@ const GridList = React.memo(({ photos }: GridListProps) => {
     const nbColumns = nbColumnsByBreakpoint[highestBreakpoint];
 
     const columnWidth = Math.floor(
-      gridWidth / nbColumnsByBreakpoint[highestBreakpoint]
+      (containerWidth <= containerMaxWidth
+        ? containerWidth
+        : containerMaxWidth) / nbColumnsByBreakpoint[highestBreakpoint]
     ); // Width of each column
     const columnHeights = Array(nbColumns).fill(0); // We create 8 columns with a default height at 0
 
@@ -88,7 +93,7 @@ const GridList = React.memo(({ photos }: GridListProps) => {
         height: itemHeight + gapImages,
       };
     });
-  }, [gridRef, photos, viewportWidth]);
+  }, [photos, viewportWidth]);
 
   /**
    * Since the item in the columns will have a absolute position, we'll need to set a height on the container
@@ -100,7 +105,7 @@ const GridList = React.memo(({ photos }: GridListProps) => {
   }, [columns]);
 
   return (
-    <GridContainer ref={gridRef} style={{ height: containerHeight }}>
+    <GridContainer id="gridList" style={{ height: containerHeight }}>
       {columns?.map(({ photo, left, top, width, height }) => (
         <GridItem
           key={`photo_${photo.id}`}
