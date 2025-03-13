@@ -1,23 +1,27 @@
-// app.test.js
+// Libraries
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import App from "../src/App";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 
-test("should display the listing component on app rendering", async () => {
-  render(<App />, { wrapper: BrowserRouter });
+// Components
+import App from "../src/App";
 
-  expect(screen.getByText(/List of images/i)).toBeInTheDocument();
-});
+describe("App", () => {
+  test("should display the listing component and the form on app rendering", async () => {
+    render(<App />, { wrapper: BrowserRouter });
 
-test("should land on a custom 404 page when route not found", () => {
-  const badRoute = "/bad/route";
+    expect(screen.getByText(/List of photos/i)).toBeInTheDocument();
+    expect(screen.getByRole("form")).toBeInTheDocument();
+  });
 
-  render(
-    <MemoryRouter initialEntries={[badRoute]}>
-      <App />
-    </MemoryRouter>
-  );
+  test("should land on a custom 404 page when route not found", () => {
+    const badRoute = "/bad/route";
 
-  expect(screen.getByText(/404 - Not Found/i)).toBeInTheDocument();
+    render(
+      <MemoryRouter initialEntries={[badRoute]}>
+        <App />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText(/404 - Not Found/i)).toBeInTheDocument();
+  });
 });

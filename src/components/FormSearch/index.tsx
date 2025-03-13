@@ -16,7 +16,7 @@ const FormSearch = ({
   handleSubmit,
 }: FormSearchProps) => {
   return (
-    <Form onSubmit={(e) => handleSubmit(e)}>
+    <Form onSubmit={(e) => handleSubmit(e)} role="form">
       <FieldText
         type="text"
         value={queryText}

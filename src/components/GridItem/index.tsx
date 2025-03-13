@@ -21,7 +21,7 @@ const GridItem = React.memo(({ photo, positionInfo }: GridItemProps) => {
   return (
     <ItemContainer style={{ width, height, top, left }}>
       <ImageLink to={`/details/${photo.id}`}>
-        <LazyImage src={photo.src.large} alt={photo.alt || ""} />
+        <LazyImage src={photo.src.medium} alt={photo.alt || ""} />
       </ImageLink>
     </ItemContainer>
   );

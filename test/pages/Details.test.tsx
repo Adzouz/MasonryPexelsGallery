@@ -2,19 +2,17 @@
 import type { PhotoContextProps } from "../../src/contexts/PhotoContext/types";
 
 // Libraries
-import { ReactElement } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { render, RenderOptions, screen, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 
 // Context
-import {
-  PhotoContext,
-  photoContextInitialValues,
-  usePhotoContext,
-} from "../../src/contexts/PhotoContext/PhotoContext";
+import { usePhotoContext } from "../../src/contexts/PhotoContext/PhotoContext";
 
 // Components
 import DetailsPage from "../../src/pages/Details";
+
+// Utils
+import { customPhotoRender, defaultContextValues } from "../utils/constants";
 
 // Data
 import mockPhotoSearch from "../__mocks__/photoSearch.json";
@@ -22,7 +20,7 @@ import mockPhotoSearch from "../__mocks__/photoSearch.json";
 // Mock methods
 const mockFetchPhotoDetails = jest.fn();
 
-// Mock of the usePhotoContext hook
+// Mock of the usePhotoContext hook (for methods)
 jest.mock("../../src/contexts/PhotoContext/PhotoContext", () => {
   const currentModule = jest.requireActual(
     "../../src/contexts/PhotoContext/PhotoContext"
@@ -30,7 +28,6 @@ jest.mock("../../src/contexts/PhotoContext/PhotoContext", () => {
   return {
     ...currentModule,
     usePhotoContext: jest.fn(() => ({
-      ...photoContextInitialValues,
       fetchPhotoDetails: mockFetchPhotoDetails,
     })),
   };
@@ -42,61 +39,20 @@ jest.mock("react-router-dom", () => ({
   useParams: jest.fn().mockReturnValue({ id: "670261" }),
 }));
 
-interface CustomRenderOptions extends Omit<RenderOptions, "wrapper"> {
-  providerProps: PhotoContextProps;
-}
-
-const customPhotoRender = (
-  ui: ReactElement,
-  { providerProps, ...renderOptions }: CustomRenderOptions
-) => {
-  return render(
-    <PhotoContext.Provider value={providerProps}>{ui}</PhotoContext.Provider>,
-    renderOptions
-  );
-};
-
 describe("Details Page", () => {
   let providerProps: PhotoContextProps;
 
   beforeEach(() => {
+    // Reset the providerProps
     providerProps = {
-      list: {
-        queryText: "madrid",
-        photos: [],
-        nbResults: {
-          total: 0,
-          displayed: 0,
-        },
-        nbItemsPerPage: 3,
-        page: 1,
-        request: {
-          loading: false,
-          error: null,
-          performed: false,
-        },
-      },
-      details: {
-        item: null,
-        request: {
-          loading: false,
-          error: null,
-          performed: true,
-        },
-      },
+      ...JSON.parse(JSON.stringify(defaultContextValues)),
       fetchPhotoDetails: mockFetchPhotoDetails,
     };
-    mockFetchPhotoDetails.mockClear();
     (usePhotoContext as jest.Mock).mockReturnValue(providerProps);
   });
 
   test("should render Details page and display the correct photo info", async () => {
-    const { rerender } = customPhotoRender(
-      <BrowserRouter>
-        <DetailsPage />
-      </BrowserRouter>,
-      { providerProps }
-    );
+    const { rerender } = customPhotoRender(<DetailsPage />, { providerProps });
 
     expect(screen.getByText("Photo details")).toBeInTheDocument();
 
@@ -120,7 +76,7 @@ describe("Details Page", () => {
       expect(photoImage).toBeInTheDocument();
       expect(photoImage).toHaveAttribute(
         "src",
-        "https://images.pexels.com/photos/670261/pexels-photo-670261.jpeg?auto=compress\u0026cs=tinysrgb\u0026h=650\u0026w=940"
+        mockPhotoSearch.photos[0].src.large
       );
 
       // Check if the photo description is correctly displayed
@@ -136,12 +92,7 @@ describe("Details Page", () => {
   });
 
   test("should display error if photo not found", async () => {
-    const { rerender } = customPhotoRender(
-      <BrowserRouter>
-        <DetailsPage />
-      </BrowserRouter>,
-      { providerProps }
-    );
+    const { rerender } = customPhotoRender(<DetailsPage />, { providerProps });
 
     await waitFor(() => {
       expect(mockFetchPhotoDetails).toHaveBeenCalledTimes(1);
@@ -165,5 +116,9 @@ describe("Details Page", () => {
     });
 
     expect(screen.queryByRole("img")).not.toBeInTheDocument();
+  });
+
+  afterEach(() => {
+    mockFetchPhotoDetails.mockClear();
   });
 });
