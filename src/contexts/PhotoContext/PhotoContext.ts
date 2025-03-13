@@ -6,7 +6,7 @@ import { createContext, useContext } from "react";
 
 const nbItemsPerPage = 80; // Pexels limit is 80
 
-export const initialValue = {
+export const photoContextInitialValues = {
   list: {
     queryText: "madrid",
     photos: [],
@@ -32,6 +32,8 @@ export const initialValue = {
   },
 };
 
-export const PhotoContext = createContext<PhotoContextProps>(initialValue);
+export const PhotoContext = createContext<PhotoContextProps>(
+  photoContextInitialValues
+);
 
 export const usePhotoContext = () => useContext(PhotoContext);

@@ -1,0 +1,74 @@
+{
+  "page": 1,
+  "per_page": 3,
+  "photos": [
+    {
+      "id": 670261,
+      "width": 3938,
+      "height": 3024,
+      "url": "https://www.pexels.com/photo/architectural-photography-of-metropolis-under-stratus-clouds-670261/",
+      "photographer": "Abhishek Verma",
+      "photographer_url": "https://www.pexels.com/@abhishek-verma-209130",
+      "photographer_id": "209130",
+      "avg_color": "#456F8D",
+      "src": {
+        "original": "https://images.pexels.com/photos/670261/pexels-photo-670261.jpeg",
+        "large2x": "https://images.pexels.com/photos/670261/pexels-photo-670261.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=650\u0026w=940",
+        "large": "https://images.pexels.com/photos/670261/pexels-photo-670261.jpeg?auto=compress\u0026cs=tinysrgb\u0026h=650\u0026w=940",
+        "medium": "https://images.pexels.com/photos/670261/pexels-photo-670261.jpeg?auto=compress\u0026cs=tinysrgb\u0026h=350",
+        "small": "https://images.pexels.com/photos/670261/pexels-photo-670261.jpeg?auto=compress\u0026cs=tinysrgb\u0026h=130",
+        "portrait": "https://images.pexels.com/photos/670261/pexels-photo-670261.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=1200\u0026w=800",
+        "landscape": "https://images.pexels.com/photos/670261/pexels-photo-670261.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=627\u0026w=1200",
+        "tiny": "https://images.pexels.com/photos/670261/pexels-photo-670261.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=1\u0026fit=crop\u0026h=200\u0026w=280"
+      },
+      "liked": false,
+      "alt": "A breathtaking aerial view of Madrid's vibrant cityscape under a clear blue sky."
+    },
+    {
+      "id": 930595,
+      "width": 6016,
+      "height": 4016,
+      "url": "https://www.pexels.com/photo/people-gathering-near-plaza-930595/",
+      "photographer": "Mati Angulo",
+      "photographer_url": "https://www.pexels.com/@mati-angulo-330211",
+      "photographer_id": "330211",
+      "avg_color": "#979B99",
+      "src": {
+        "original": "https://images.pexels.com/photos/930595/pexels-photo-930595.jpeg",
+        "large2x": "https://images.pexels.com/photos/930595/pexels-photo-930595.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=650\u0026w=940",
+        "large": "https://images.pexels.com/photos/930595/pexels-photo-930595.jpeg?auto=compress\u0026cs=tinysrgb\u0026h=650\u0026w=940",
+        "medium": "https://images.pexels.com/photos/930595/pexels-photo-930595.jpeg?auto=compress\u0026cs=tinysrgb\u0026h=350",
+        "small": "https://images.pexels.com/photos/930595/pexels-photo-930595.jpeg?auto=compress\u0026cs=tinysrgb\u0026h=130",
+        "portrait": "https://images.pexels.com/photos/930595/pexels-photo-930595.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=1200\u0026w=800",
+        "landscape": "https://images.pexels.com/photos/930595/pexels-photo-930595.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=627\u0026w=1200",
+        "tiny": "https://images.pexels.com/photos/930595/pexels-photo-930595.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=1\u0026fit=crop\u0026h=200\u0026w=280"
+      },
+      "liked": false,
+      "alt": "A lively scene at Plaza Mayor, Madrid, featuring historic architecture and a statue."
+    },
+    {
+      "id": 3254729,
+      "width": 3640,
+      "height": 5189,
+      "url": "https://www.pexels.com/photo/yellow-and-beige-high-rise-building-3254729/",
+      "photographer": "Alex Azabache",
+      "photographer_url": "https://www.pexels.com/@alexazabache",
+      "photographer_id": "1664241",
+      "avg_color": "#606162",
+      "src": {
+        "original": "https://images.pexels.com/photos/3254729/pexels-photo-3254729.jpeg",
+        "large2x": "https://images.pexels.com/photos/3254729/pexels-photo-3254729.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=650\u0026w=940",
+        "large": "https://images.pexels.com/photos/3254729/pexels-photo-3254729.jpeg?auto=compress\u0026cs=tinysrgb\u0026h=650\u0026w=940",
+        "medium": "https://images.pexels.com/photos/3254729/pexels-photo-3254729.jpeg?auto=compress\u0026cs=tinysrgb\u0026h=350",
+        "small": "https://images.pexels.com/photos/3254729/pexels-photo-3254729.jpeg?auto=compress\u0026cs=tinysrgb\u0026h=130",
+        "portrait": "https://images.pexels.com/photos/3254729/pexels-photo-3254729.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=1200\u0026w=800",
+        "landscape": "https://images.pexels.com/photos/3254729/pexels-photo-3254729.jpeg?auto=compress\u0026cs=tinysrgb\u0026fit=crop\u0026h=627\u0026w=1200",
+        "tiny": "https://images.pexels.com/photos/3254729/pexels-photo-3254729.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=1\u0026fit=crop\u0026h=200\u0026w=280"
+      },
+      "liked": false,
+      "alt": "Aerial view of Madrid's Metropolis Building illuminated at dusk, showcasing urban architecture."
+    }
+  ],
+  "total_results": 2624,
+  "next_page": "https://api.pexels.com/v1/search?page=2\u0026per_page=3\u0026query=madrid"
+}

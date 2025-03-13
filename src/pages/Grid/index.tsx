@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 
 // Context
-import { usePhotoContext } from "../../context/PhotoContext/PhotoContext";
+import { usePhotoContext } from "../../contexts/PhotoContext/PhotoContext";
 
 // Components
 import FormSearch from "../../components/FormSearch";
