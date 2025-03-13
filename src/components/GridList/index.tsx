@@ -105,7 +105,10 @@ const GridList = React.memo(({ photos }: GridListProps) => {
   }, [columns]);
 
   return (
-    <GridContainer id="gridList" style={{ height: containerHeight }}>
+    <GridContainer
+      id="gridList"
+      style={{ maxWidth: containerMaxWidth, height: containerHeight }}
+    >
       {columns?.map(({ photo, left, top, width, height }) => (
         <GridItem
           key={`photo_${photo.id}`}

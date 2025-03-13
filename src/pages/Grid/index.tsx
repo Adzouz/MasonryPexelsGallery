@@ -45,11 +45,11 @@ const GridPage = () => {
 
   return (
     <div>
-      <h2>List of images</h2>
+      <h2>List of photos</h2>
       <FormSearch
         queryText={queryText}
         setQueryText={(value) => setQueryText?.(value)}
-        handleSubmit={(event) =>
+        handleSubmit={(event) => {
           handleSearchFormSubmit?.(event, () => {
             if (fetchPhotos) {
               shouldFetchRef.current = true;
@@ -57,8 +57,8 @@ const GridPage = () => {
                 shouldFetchRef.current = false;
               });
             }
-          })
-        }
+          });
+        }}
       />
       {request.error && <ErrorMessage>{request.error}</ErrorMessage>}
       {request.performed && (
