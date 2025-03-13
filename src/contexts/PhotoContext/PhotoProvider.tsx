@@ -12,34 +12,37 @@ import {
 } from "react";
 import { createClient } from "pexels";
 
-import { PhotoContext, initialValue } from "./PhotoContext";
+import { PhotoContext } from "./PhotoContext";
 
-export const PhotoProvider = ({ children }: PropsWithChildren) => {
+export const PhotoProvider = ({
+  children,
+  ...initialValues
+}: PropsWithChildren<PhotoContextProps>) => {
   const client = useRef(createClient(import.meta.env.VITE_PEXELS_API_KEY));
   const resultsRef = useRef<PhotosWithTotalResults | null>(null);
 
   // List state
   const [requestStateList, setRequestStateList] = useState<RequestState>(
-    initialValue.list.request
+    initialValues.list.request
   );
   const [queryText, setQueryText] = useState<
     PhotoContextProps["list"]["queryText"]
-  >(initialValue.list.queryText);
+  >(initialValues.list.queryText);
   const [previousQueryText, setPreviousQueryText] = useState("");
   const [photos, setPhotos] = useState<PhotoContextProps["list"]["photos"]>(
-    initialValue.list.photos
+    initialValues.list.photos
   );
   const [page, setPage] = useState<PhotoContextProps["list"]["page"]>(
-    initialValue.list.page
+    initialValues.list.page
   );
 
   // Details state
   const [requestStateDetails, setRequestStateDetails] = useState<RequestState>(
-    initialValue.details.request
+    initialValues.details.request
   );
   const [photoDetails, setPhotoDetails] = useState<
     PhotoContextProps["details"]["item"]
-  >(initialValue.details.item);
+  >(initialValues.details.item);
 
   /**
    * Method to fetch the list of photos from Pexels API
@@ -63,7 +66,7 @@ export const PhotoProvider = ({ children }: PropsWithChildren) => {
       try {
         const response = await client.current.photos.search({
           query,
-          per_page: initialValue.list.nbItemsPerPage,
+          per_page: initialValues.list.nbItemsPerPage,
           page: newPage,
         });
 
@@ -139,7 +142,7 @@ export const PhotoProvider = ({ children }: PropsWithChildren) => {
         console.error(err);
         setRequestStateDetails((state) => ({
           ...state,
-          error: "Failed to fetch data.",
+          error: "Failed to fetch photo.",
         }));
       } finally {
         setRequestStateDetails((state) => ({
@@ -193,7 +196,7 @@ export const PhotoProvider = ({ children }: PropsWithChildren) => {
           setQueryText,
           photos,
           nbResults,
-          nbItemsPerPage: initialValue.list.nbItemsPerPage,
+          nbItemsPerPage: initialValues.list.nbItemsPerPage,
           page,
           request: {
             ...requestStateList,

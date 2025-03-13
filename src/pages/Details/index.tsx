@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 
 // Context
-import { usePhotoContext } from "../../context/PhotoContext/PhotoContext";
+import { usePhotoContext } from "../../contexts/PhotoContext/PhotoContext";
 
 // Components
 import Loader from "../../components/Loader";
@@ -39,7 +39,7 @@ const DetailsPage = () => {
 
   return (
     <div>
-      <h2>Photos details</h2>
+      <h2>Photo details</h2>
       {request.loading && (
         <LoaderContainer>
           <Loader />
