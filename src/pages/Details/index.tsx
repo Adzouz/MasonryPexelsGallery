@@ -1,5 +1,5 @@
 // Libraries
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
 // Context
@@ -19,6 +19,7 @@ import {
 } from "../styles";
 
 const DetailsPage = () => {
+  const [reloadComponent, setReloadComponent] = useState(true);
   const { id } = useParams();
   const { details, fetchPhotoDetails } = usePhotoContext();
   const { item, request } = details;
@@ -31,11 +32,18 @@ const DetailsPage = () => {
       id &&
       !isNaN(parseInt(id))
     ) {
+      setReloadComponent(true);
       fetchPhotoDetails(parseInt(id), () => {
         shouldFetchRef.current = false;
       });
     }
   }, [fetchPhotoDetails, id]);
+
+  useEffect(() => {
+    if (!request.loading) {
+      setReloadComponent(false);
+    }
+  }, [request.loading]);
 
   return (
     <div>
@@ -46,7 +54,7 @@ const DetailsPage = () => {
         </LoaderContainer>
       )}
       {request.error && <ErrorMessage>{request.error}</ErrorMessage>}
-      {item && (
+      {item && !request.loading && !reloadComponent && (
         <PageContent>
           <PhotoDetails details={item} />
         </PageContent>

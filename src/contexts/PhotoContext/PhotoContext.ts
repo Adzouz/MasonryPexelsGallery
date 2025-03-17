@@ -25,7 +25,7 @@ export const photoContextInitialValues = {
   details: {
     item: null,
     request: {
-      loading: false,
+      loading: true,
       error: null,
       performed: false,
     },
