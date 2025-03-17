@@ -104,6 +104,12 @@ export const PhotoProvider = ({
    */
   const fetchPhotoDetails = useCallback(
     async (id: number, shouldFetchRefCallback: () => void) => {
+      setRequestStateDetails((state) => ({
+        ...state,
+        loading: true,
+        error: null,
+      }));
+
       shouldFetchRefCallback();
       const photoFound = photos.find((photo) => photo.id === id);
       if (photoFound) {
@@ -118,12 +124,6 @@ export const PhotoProvider = ({
       }
 
       if (!client.current) return;
-
-      setRequestStateDetails((state) => ({
-        ...state,
-        loading: true,
-        error: null,
-      }));
 
       try {
         const response = await client.current.photos.show({
